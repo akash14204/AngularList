@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import {DataModel} from '../data-model';
 
 @Component({
   selector: 'app-blog-list',
@@ -7,9 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BlogListComponent implements OnInit {
 
+  public checkData:boolean=false;
+  public modelArray:DataModel[]=[];
   constructor() { }
 
   ngOnInit() {
   }
+  
 
+  OnSubmitTile(t,d){
+    this.modelArray.push(new DataModel(t.value,d.value));
+    this.checkData=true;
+    console.log(this.modelArray);
+    this.clear();
+  }
+  clear(){
+  }
 }

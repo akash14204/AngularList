@@ -1,3 +1,35 @@
-<p>
-  blog-list works!
-</p>
+<br>
+<div class="row">
+  <div class="col-md-4"></div>
+  <br>
+  <div class="col-md-8">
+    <button data-toggle="modal" data-target="#myModal">Create New Todo</button><br>
+    <ul *ngIf="checkData">
+      <div *ngFor="let data of modelArray">
+        <app-blog-post-tile [model]="data"></app-blog-post-tile>
+      </div>
+    </ul>
+  </div>
+</div>
+
+
+<!--...............................................................................................-->
+
+<!-- Modal -->
+<div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-body">
+        <input type="text" #title   placeholder="Title" /><br><br>
+        <textarea type="text" #description  placeholder="Description"></textarea>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-success" data-dismiss="modal" (click)="OnSubmitTile(title,description)">submit</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>

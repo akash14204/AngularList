@@ -27,9 +27,13 @@
               "src/assets"
             ],
             "styles": [
+              "../HouseOfCards/node_modules/bootstrap/dist/css/bootstrap.css",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "../HouseOfCards/node_modules/jquery/dist/jquery.js",
+              "../HouseOfCards/node_modules/bootstrap/dist/js/bootstrap.js"
+            ]
           },
           "configurations": {
             "production": {
