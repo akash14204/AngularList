@@ -19,9 +19,5 @@ export class BlogListComponent implements OnInit {
   OnSubmitTile(t,d){
     this.modelArray.push(new DataModel(t.value,d.value));
     this.checkData=true;
-    console.log(this.modelArray);
-    this.clear();
-  }
-  clear(){
   }
 }
