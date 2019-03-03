@@ -1,4 +1,4 @@
-<br>
+<!-- <br>
 <div class="row">
   <div class="col-md-4"></div>
   <br>
@@ -10,17 +10,17 @@
       </div>
     </ul>
   </div>
-</div>
+</div> -->
 
 
 <!--...............................................................................................-->
 
 <!-- Modal -->
-<div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+<!-- <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog"> -->
 
     <!-- Modal content-->
-    <div class="modal-content">
+    <!-- <div class="modal-content">
       <div class="modal-body">
         <input type="text" #title   placeholder="Title" /><br><br>
         <textarea type="text" #description  placeholder="Description"></textarea>
@@ -32,4 +32,20 @@
     </div>
 
   </div>
-</div>
+</div> -->
+
+<button (click)="fullParentDesc()">Expand All</button>
+<button (click)="favAll()">Favourate All</button>
+  <div *ngFor="let data of modelArray2D[i]">
+         <app-blog-post-tile #tile [modelArray]="data" (fullEventEmitter)="fullDescParent($event)"></app-blog-post-tile>
+  </div>  
+
+
+  <!-- <app-blog-post-tile #tile [modelArray]="modelArray2D[0][0]" (fullEventEmitter)="fullDescParent($event)"></app-blog-post-tile>
+  -->
+  <app-pagination (eventEmitter)="start($event)"></app-pagination>
+
+  <!--ng Content-->
+  <app-demo-card-content>
+    <h1>hello</h1>
+  </app-demo-card-content>

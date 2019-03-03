@@ -1,5 +1,7 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import {DataModel} from '../data-model';
+import { Component, OnInit, ViewChild, ElementRef, QueryList, ViewChildren } from '@angular/core';
+import { DataModel } from '../data-model';
+import { BlogPostTileComponent } from '../blog-post-tile/blog-post-tile.component';
+import {HardCodeDataService} from '../hard-code-data.service'
 
 @Component({
   selector: 'app-blog-list',
@@ -8,16 +10,34 @@ import {DataModel} from '../data-model';
 })
 export class BlogListComponent implements OnInit {
 
-  public checkData:boolean=false;
-  public modelArray:DataModel[]=[];
-  constructor() { }
+  //instance of refrence tile will be provided to bloglistComponent.
+  @ViewChildren("tile") blogPostTileComponent:QueryList<BlogPostTileComponent>
+  i:number=0;
+  public checkData: boolean = false;
+  //public modelArray:DataModel[]=[];
+  public modelArray2D: DataModel[][];
+
+  constructor(public hardCodeDataService:HardCodeDataService) { }                                                                                                                                                       
 
   ngOnInit() {
+    this.modelArray2D = this.hardCodeDataService.getData();   
+  }
+
+
+  start($event){
+     this.i=$event;
+  }
+  // OnSubmitTile(t, d) {
+  //   //this.modelArray.push(new DataModel(t.value, d.value));
+  //   this.checkData = true;
+  // }
+
+  fullParentDesc(){
+    this.blogPostTileComponent.forEach(e=>e.fullDescription());
   }
   
-
-  OnSubmitTile(t,d){
-    this.modelArray.push(new DataModel(t.value,d.value));
-    this.checkData=true;
+  favAll(){
+    this.modelArray2D[this.i].forEach(e=>e.checkFav=true);
   }
+  
 }

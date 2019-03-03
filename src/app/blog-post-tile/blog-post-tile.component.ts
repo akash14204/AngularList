@@ -1,5 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output,EventEmitter, ViewChild } from '@angular/core';
 import { DataModel } from '../data-model';
+import  {TruncatePipe} from '../truncate.pipe';
+
 @Component({
   selector: 'app-blog-post-tile',
   templateUrl: './blog-post-tile.component.html',
@@ -7,12 +9,26 @@ import { DataModel } from '../data-model';
 })
 export class BlogPostTileComponent implements OnInit {
 
-  @Input() model:DataModel;
-  constructor() { }
+  str:String;
+  @Output() fullEventEmitter=new EventEmitter();
+  @Input('modelArray') model:DataModel;
 
-  ngOnInit() {
+  constructor(public truncatePipe:TruncatePipe) { }
+   ngOnInit(){
+      this.str =this.model.description;
+      this.model.description=this.truncatePipe.transform(this.str,2);
     
   }
+
+  fullDescription(){
+    this.model.description=this.str;
+  }
+  
+  fav(){
+      this.model.checkFav=!this.model.checkFav;
+  }
+
+
 
   
   
